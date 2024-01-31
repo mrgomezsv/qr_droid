@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QRDROID</string>
+    <string name="generar_c_digo_qr">Generar código QR</string>
+    <string name="guardar_c_digo_qr">Guardar código QR</string>
+    <string name="compartir_c_digo_qr">Compartir código QR</string>
+    <string name="ingrese_el_texto_del_c_digo_qr">Ingrese el texto del código QR</string>
+</resources>
