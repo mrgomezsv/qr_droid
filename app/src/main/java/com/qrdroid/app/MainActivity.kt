@@ -2,15 +2,19 @@ package com.qrdroid.app
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.zxing.BarcodeFormat
@@ -41,6 +45,8 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
 
         findViewById<Button>(R.id.generateQRButton).setOnClickListener { generateQRCode() }
         findViewById<Button>(R.id.saveQRButton).setOnClickListener { saveQRCode() }
+
+        link()
 
     }
 
@@ -73,7 +79,11 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
             }
 
             // Muestra el código QR en el ImageView
-            findViewById<ImageView>(R.id.qrCodeImageView).setImageBitmap(bmp)
+            val qrCodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
+            qrCodeImageView.setImageBitmap(bmp)
+
+            // Hace visible el botón saveQRButton
+            findViewById<Button>(R.id.saveQRButton).visibility = View.VISIBLE
 
             // Oculta el teclado virtual
             hideKeyboard()
@@ -82,6 +92,7 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
             e.printStackTrace()
         }
     }
+
 
     // Método para ocultar el teclado virtual
     private fun hideKeyboard() {
@@ -153,5 +164,16 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
 
     override fun onTorchOff() {
         // Implementa la lógica para cuando se apague el flash.
+    }
+
+    private fun link() {// Yo
+        val txtUrl: TextView = findViewById(R.id.madeByText)
+        txtUrl.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://mrgomezsv.github.io/")
+            )
+            startActivity(intent)
+        }
     }
 }
