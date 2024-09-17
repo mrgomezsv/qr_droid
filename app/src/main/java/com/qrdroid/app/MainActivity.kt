@@ -43,20 +43,28 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         barcodeView.decodeContinuous(barcodeCallback)
         barcodeView.setTorchListener(this)
 
-        findViewById<Button>(R.id.generateQRButton).setOnClickListener { generateQRCode() }
-        findViewById<Button>(R.id.saveQRButton).setOnClickListener { saveQRCode() }
+        val generateQRButton: Button = findViewById(R.id.generateQRButton)
+        val clearButton: Button = findViewById(R.id.clearButton)
+        val saveQRButton: Button = findViewById(R.id.saveQRButton)
+
+        generateQRButton.setOnClickListener { generateQRCode() }
+        clearButton.setOnClickListener { clearQRCode() }
+        saveQRButton.setOnClickListener { saveQRCode() }
+
+        // Inicialmente, ocultar el botón Clear y el botón Save QR
+        clearButton.visibility = View.GONE
+        saveQRButton.visibility = View.GONE
 
         link()
-
     }
 
     private val barcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
-
+            // Maneja el resultado del escaneo aquí, si es necesario
         }
 
         override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {
-
+            // Maneja los puntos de resultado posibles aquí, si es necesario
         }
     }
 
@@ -82,7 +90,13 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
             val qrCodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
             qrCodeImageView.setImageBitmap(bmp)
 
-            // Hace visible el botón saveQRButton
+            // Oculta el botón generateQRButton
+            findViewById<Button>(R.id.generateQRButton).visibility = View.GONE
+
+            // Muestra el botón clearButton
+            findViewById<Button>(R.id.clearButton).visibility = View.VISIBLE
+
+            // Muestra el botón saveQRButton
             findViewById<Button>(R.id.saveQRButton).visibility = View.VISIBLE
 
             // Oculta el teclado virtual
@@ -93,13 +107,26 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         }
     }
 
+    private fun clearQRCode() {
+        // Limpia el campo de texto y la imagen del QR
+        findViewById<TextInputEditText>(R.id.textInputEditText).text = null
+        findViewById<ImageView>(R.id.qrCodeImageView).setImageDrawable(null)
+
+        // Muestra el botón generateQRButton
+        findViewById<Button>(R.id.generateQRButton).visibility = View.VISIBLE
+
+        // Oculta el botón clearButton
+        findViewById<Button>(R.id.clearButton).visibility = View.GONE
+
+        // Oculta el botón saveQRButton
+        findViewById<Button>(R.id.saveQRButton).visibility = View.GONE
+    }
 
     // Método para ocultar el teclado virtual
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
-
 
     @Throws(WriterException::class)
     private fun encodeAsBitmap(contents: String): BitMatrix {
@@ -108,7 +135,6 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         val result = MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, 400, 400, hints)
         return result
     }
-
 
     private fun saveQRCode() {
         val qrCodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
@@ -166,7 +192,7 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         // Implementa la lógica para cuando se apague el flash.
     }
 
-    private fun link() {// Yo
+    private fun link() {
         val txtUrl: TextView = findViewById(R.id.madeByText)
         txtUrl.setOnClickListener {
             val intent = Intent(
