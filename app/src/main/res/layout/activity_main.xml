@@ -69,17 +69,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Imagen del código QR generado -->
+        <!-- Imagen del código QR generado o imagen por defecto -->
         <ImageView
             android:id="@+id/qrCodeImageView"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
-            android:transitionName="qrCodeTransition"
             android:layout_marginTop="16dp"
+            android:src="@drawable/placeholder"
             app:layout_constraintTop_toBottomOf="@+id/generateQRButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- Botón para guardar el código QR generado -->
         <Button
