@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         val generateQRButton: Button = findViewById(R.id.generateQRButton)
         val clearButton: Button = findViewById(R.id.clearButton)
         val saveQRButton: Button = findViewById(R.id.saveQRButton)
+        val madeByText: TextView = findViewById(R.id.madeByText)
 
         generateQRButton.setOnClickListener { generateQRCode() }
         clearButton.setOnClickListener { restartActivity() }
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         // Inicialmente, ocultar el botón Clear y el botón Save QR
         clearButton.visibility = View.GONE
         saveQRButton.visibility = View.GONE
+        madeByText.visibility = View.GONE // Ocultar madeByText inicialmente
 
         link()
     }
@@ -98,6 +100,9 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
 
             // Muestra el botón saveQRButton
             findViewById<Button>(R.id.saveQRButton).visibility = View.VISIBLE
+
+            // Muestra el TextView madeByText si saveQRButton es visible
+            findViewById<TextView>(R.id.madeByText).visibility = View.VISIBLE
 
             // Oculta el teclado virtual
             hideKeyboard()
