@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         val saveQRButton: Button = findViewById(R.id.saveQRButton)
 
         generateQRButton.setOnClickListener { generateQRCode() }
-        clearButton.setOnClickListener { clearQRCode() }
+        clearButton.setOnClickListener { restartActivity() }
         saveQRButton.setOnClickListener { saveQRCode() }
 
         // Inicialmente, ocultar el botón Clear y el botón Save QR
@@ -107,21 +107,11 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         }
     }
 
-    private fun clearQRCode() {
-        // Limpia el campo de texto
-        findViewById<TextInputEditText>(R.id.textInputEditText).text = null
-
-        // Limpia el código QR mostrado
-        findViewById<ImageView>(R.id.qrCodeImageView).setImageDrawable(null)
-
-        // Muestra el botón generateQRButton
-        findViewById<Button>(R.id.generateQRButton).visibility = View.VISIBLE
-
-        // Oculta el botón clearButton
-        findViewById<Button>(R.id.clearButton).visibility = View.GONE
-
-        // Oculta el botón saveQRButton
-        findViewById<Button>(R.id.saveQRButton).visibility = View.GONE
+    private fun restartActivity() {
+        // Reinicia la actividad actual
+        val intent = Intent(this, MainActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
     // Método para ocultar el teclado virtual
