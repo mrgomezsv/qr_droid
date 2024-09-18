@@ -108,8 +108,10 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
     }
 
     private fun clearQRCode() {
-        // Limpia el campo de texto y la imagen del QR
+        // Limpia el campo de texto
         findViewById<TextInputEditText>(R.id.textInputEditText).text = null
+
+        // Limpia el código QR mostrado
         findViewById<ImageView>(R.id.qrCodeImageView).setImageDrawable(null)
 
         // Muestra el botón generateQRButton
