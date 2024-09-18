@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928792381605",
+    "project_id": "qrdroid-d35ee",
+    "storage_bucket": "qrdroid-d35ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928792381605:android:8563195173249171c0e54c",
+        "android_client_info": {
+          "package_name": "com.qrdroid.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtVrHc_fSS69PgpFpp7-ZHPTbmjQ-p0Qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
