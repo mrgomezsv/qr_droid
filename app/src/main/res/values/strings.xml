@@ -5,4 +5,5 @@
     <string name="compartir_c_digo_qr">Compartir QR</string>
     <string name="ingrese_el_texto_del_c_digo_qr">Ingrese el texto del código QR</string>
     <string name="made">Power by Kotlin - mrgomez.dev</string>
+    <string name="clear">Limpiar</string>
 </resources>
