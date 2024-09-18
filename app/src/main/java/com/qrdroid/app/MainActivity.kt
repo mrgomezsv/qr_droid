@@ -74,6 +74,12 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         // Obtiene el valor del TextInputEditText
         val inputValue = findViewById<TextInputEditText>(R.id.textInputEditText).text.toString()
 
+        if (inputValue.isEmpty()) {
+            // Muestra un mensaje Toast si el campo de texto está vacío
+            Toast.makeText(this, "Por favor ingresa una url o lo que quieras Generar su QR", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         try {
             // Genera el código QR utilizando ZXing
             val bitMatrix = encodeAsBitmap(inputValue)
