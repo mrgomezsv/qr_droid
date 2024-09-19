@@ -20,7 +20,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
-import com.google.zxing.ResultPoint
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.journeyapps.barcodescanner.BarcodeCallback
@@ -30,6 +29,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.EnumMap
+import android.view.animation.AnimationUtils
+import androidx.core.view.isVisible
+import com.google.zxing.ResultPoint
 
 class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
 
@@ -47,9 +49,10 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         val clearButton: Button = findViewById(R.id.clearButton)
         val saveQRButton: Button = findViewById(R.id.saveQRButton)
         val madeByText: TextView = findViewById(R.id.madeByText)
+        val qrCodeImageView: ImageView = findViewById(R.id.qrCodeImageView)
 
         generateQRButton.setOnClickListener { generateQRCode() }
-        clearButton.setOnClickListener { clearFields() } // Actualiza el listener del botón Clear
+        clearButton.setOnClickListener { clearFields() }
         saveQRButton.setOnClickListener { saveQRCode() }
 
         // Inicialmente, ocultar el botón Clear y el botón Save QR
@@ -97,6 +100,10 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
             // Muestra el código QR en el ImageView
             val qrCodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
             qrCodeImageView.setImageBitmap(bmp)
+
+            // Aplicar animación al ImageView
+            val animation = AnimationUtils.loadAnimation(this, R.anim.qr_slide_up_bounce)
+            qrCodeImageView.startAnimation(animation)
 
             // Oculta el botón generateQRButton
             findViewById<Button>(R.id.generateQRButton).visibility = View.GONE
