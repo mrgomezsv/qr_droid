@@ -129,8 +129,9 @@ class MainActivity : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
         // Limpia el campo de texto
         findViewById<TextInputEditText>(R.id.textInputEditText).text?.clear()
 
-        // Limpia el ImageView
-        findViewById<ImageView>(R.id.qrCodeImageView).setImageBitmap(null)
+        // Limpia el ImageView y muestra la imagen de marcador de posición
+        val qrCodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
+        qrCodeImageView.setImageResource(R.drawable.placeholder)
 
         // Oculta el botón clearButton
         findViewById<Button>(R.id.clearButton).visibility = View.GONE
