@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema base de la aplicación -->
+    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores personalizados -->
+        <item name="colorPrimary">@color/my_primary_color</item>
+        <item name="colorPrimaryVariant">@color/my_primary_variant_color</item>
+        <item name="colorAccent">@color/my_accent_color</item>
+        <!-- Otros estilos, como fuentes y dimensiones -->
+    </style>
+
+</resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QRDROID</string>
+    <string name="app_name">QR Droid</string>
     <string name="generar_c_digo_qr">Generar QR</string>
     <string name="guardar_c_digo_qr">Guardar QR</string>
     <string name="compartir_c_digo_qr">Compartir QR</string>
